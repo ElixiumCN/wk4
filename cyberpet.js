@@ -3,8 +3,6 @@ import inquirer from 'inquirer';
 import questions from './happy.js';
 
 // const inquirer = require('inquirer');
-
-
 // Variables
 
 let petHappy = 100;
@@ -228,6 +226,4 @@ const actions = async () => {
     actions()
 })
 }  
-actions() 
-
-
+actions()
