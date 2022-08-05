@@ -1,0 +1,3 @@
+npm init -y
+Npm install --save-dev jest
+in the package.json file edit test to be :     "test": "jest"

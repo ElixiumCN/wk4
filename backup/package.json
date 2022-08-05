@@ -1,0 +1,16 @@
+{
+  "name": "wk4cyberpet",
+  "version": "1.0.0",
+  "description": "",
+  "main": "cyberpet.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^8.2.4"
+  }
+}
