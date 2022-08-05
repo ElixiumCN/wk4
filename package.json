@@ -2,8 +2,8 @@
   "name": "wk4cyberpet",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -11,6 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "inquirer": "^9.0.2"
+    "inquirer": "^8.2.4"
   }
 }

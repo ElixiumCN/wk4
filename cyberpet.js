@@ -1,99 +1,92 @@
 // todo: doing now: classes & subclasses
 import inquirer from 'inquirer';
+import questions from './happy.js';
+
+// const inquirer = require('inquirer');
 
 
 // Variables
+
 let petHappy = 100;
 let petClean = 100;
 let petHunger = 100;
 
-// 0 = hates [subtract 10 points], 
-// 1 = likes [add 10 points], 
-// 2 = likes a lot[add 20 points]
-// 3 = no stats modified
-
-
-function addHappyPoints() {
-    if(petHappy<=99&&petHappy!=0){
-        petHappy += 20;
-        console.log(`${response.getName} is 20 points happier.`);
-    }
-    else if(petHappy==0){
-        petHappy+=0;
-        console.log(`${response.getName} can't be happier.`);
-    }
-}
-
-function addCleanPoints() {
-    if(petClean<=99&&petClean!=0){
-        petClean += 20;
-        console.log(`${response.getName} is 20 points cleaner.`);
-    }
-    else if(petClean==0){
-        petClean+=0;
-        console.log(`${response.getName} is already completely clean.`);
-    }
-}
-
-function addHungerPoints() {
-    if(petHunger<=99&&petHunger!=0){
-        petHunger += 20;
-        console.log(`${response.getName} is 20 points less hungry.`);
-    }
-    else if(petHunger==0){
-        petHunger+=0;
-        console.log(`${response.getName} can't eat anymore.`);
-    }
-}
-
+// happy clean & hunger
 // main Class
+
 class cyberPet {
     constructor (name) {
     this.name = name
     this.happy = 100
     this.clean = 100
-    this.hunger = 100
+    this.hunger = 100;
+    }
 
-
-    //
-}
 }
 
 // const myFunctions = require('subHamster.cjs');
-// import Hamster from 'subHamster.js';
+
+// const Hamster = require('./subHamster.js');
 
 
-// Subclass
+
 class Hamster extends cyberPet {
     constructor(name) {
         super (name)
         this.name = name
         this.eatLettuce = 0
-        this.eatMeat = 0
-        this.eatDry = 1
-        this.playBone = 0
-        this.playBall = 0
-        this.playWool = 3
-        this.playCleans = 0
-        this.cleanPoints = 1
-        this.cleanHappyPoints = 1
-}   
+    }   
+
+    plays() {
+        this.happy += 20;
+        console.log(`${response.getName}'s plays with the Hamster Wheel & is 20 points happier.`);
+        return this;
+    }
+
+    cleans() {
+        this.clean += 20;
+        console.log(`${response.getName}'s is 20 points cleaner.`);
+        return this;
+    }
+
+
+    eats() {
+        this.hunger += 20;
+        console.log(`You feed ${response.getName} Hamster Pellets. They are 20 points less hungry.`);
+        return this;
+    }
+
 }
+
 
 class Cat extends cyberPet {
     constructor(name) {
         super (name)
         this.name = name
         this.eatLettuce = 0
-        this.eatMeat = 0
-        this.eatDry = 1
-        this.playBone = 0
-        this.playBall = 0
-        this.playWool = 3
-        this.playCleans = 0
-        this.cleanPoints = 1
-        this.cleanHappyPoints = 1
 }   
+
+    plays() {
+        this.happy += 20;
+        console.log(`${response.getName}'s plays with a Ball of Wool & is 20 points happier.`);
+        return this;
+    }
+
+    cleans() {
+        this.happy -= 20;
+        console.log(`${response.getName}'s doesn't like to be cleaned and is 20 points less happy.`);
+        return this;
+    }
+
+
+    eats() {
+        this.hunger += 20;
+        console.log(`You feed ${response.getName} Cooked Beef. They are 20 points less hungry.`);
+        return this;
+    }
+
+
+
 }
 
 class Dog extends cyberPet {
@@ -101,48 +94,45 @@ class Dog extends cyberPet {
         super (name)
         this.name = name
         this.eatLettuce = 0
-        this.eatMeat = 0
-        this.eatDry = 1
-        this.playBone = 0
-        this.playBall = 0
-        this.playWool = 3
-        this.playCleans = 0
-        this.cleanPoints = 1
-        this.cleanHappyPoints = 1
-}   
-}
-
-const questions = [
-    {
-        type: 'list',
-        name: 'getType',
-        message: "Choose the type of pet that you would like",
-        choices: ['Hamster', 'Dog', 'Cat'],
-// choices "array" within the inquirer questions rather than an external array, I don't know how to use an external array/list with inquirer
-    },
-    {
-        type: 'input',
-        name: 'getName', // the name of the var holding the user input data.
-        message: "Give your pet a name"
     }
+        plays() {
+            this.happy += 20;
+            console.log(`${response.getName} is playing Fetch with you & is 20 points happier.`);
+            return this;
+        }
     
-]
+        cleans() {
+            this.clean += 20;
+            console.log(`${response.getName}'s is 20 points cleaner.`);
+            return this;
+        }
+    
+    
+        eats() {
+            this.hunger += 20;
+            console.log(`You feed ${response.getName} Purina Pro Plan. They are 20 points less hungry.`);
+            return this;
+        }
+    
+}   
+
+
+
 
 const response = await inquirer.prompt(questions)
 // let playersPet = new Hamster(response.getName)
 // creating new object of cyberPet class with the name response of the questions.
+    let pet 
+    if(response.getType === 'Hamster'){
+        console.log("hello");
+        pet = new Hamster(response.getType)
+    } else if(response.getType === 'Dog'){
+        pet = new Dog(response.getType)
+    } else if(response.getType === 'Cat'){
+        pet = new Cat(response.getType)
+    }
 
-let pet 
-if(response.getType === 'Hamster'){
-    pet = new Hamster(response.getType)
-} else if(response.getType === 'Dog'){
-    pet = new Dog(response.getType)
-} else if(response.getType === 'Cat'){
-    pet = new Cat(response.getType)
-}
 
-// let playerPetChoice = `${response.getType}` // create var holding the player chosen subclass (animal type)
-// const theCyberPet = new playerPetChoice; // spawns the player chosen subclass (animal type)
 console.log(`You have chosen ${response.getType}`);
 console.log(`You have named your pet ${response.getName}`);
 
@@ -154,58 +144,56 @@ let clock3 = setInterval(depleteHunger, 700); //pet health decrement speed
 
 
 function depleteHappy(){
-    if(petHappy == 0){
+    if(pet.happy == 0){
     clearInterval(clock1);
     console.log("Your pet needs play");
     gameovercheck();
     }
     else{
-    petHappy--;
+        pet.happy--;
     printRealtimeStats();
     }
 }
 
 function depleteClean(){
-    if(petClean == 0){
+    if(pet.clean == 0){
     clearInterval(clock2);
     console.log("Your pet needs cleaning");
     gameovercheck();
     }
     else{
-    petClean--;
+    pet.clean--;
     printRealtimeStats();
     }
 }
 
 function depleteHunger(){
-    if(petHunger == 0){
+    if(pet.hunger == 0){
     clearInterval(clock3);
     console.log("Your pet needs feeding");
     gameovercheck();
     }
     else{
-    petHunger--;
+    pet.hunger--;
     printRealtimeStats();
     }
 }
 
 function gameovercheck(){
-    if(petHealth==0&&gameover==0){
+    if(pet.health==0&&gameover==0){
     alert("Game Over!");
     gameover++;
-    console.log("Something");
+    console.log("Your pet needs to go to the hospital, you have failed as a Pet Owner.");
     }
     else {
-        console.log("Something");
+        console.log("Your pet needs to go to the hospital, you have failed as a Pet Owner.");
     }
 }
-
-
 
 function printRealtimeStats(){
     process.stdout.clearLine();
     process.stdout.cursorTo(0);
-    process.stdout.write(`${response.getName} stats: Happy: ${petHappy}% Clean: ${petClean}% Hunger: ${petHunger}%`);
+    process.stdout.write(`${response.getName} stats: Happy: [${pet.happy}%] Hunger: [${pet.hunger}%] Clean: [${pet.clean}%]`);
 }
 
 const questions2 = [
@@ -218,28 +206,6 @@ const questions2 = [
     
 ]
 
-// inquirer
-// .prompt([
-// {
-//     type:'list',
-//     name: 'getAction',
-//     message: "What's your chosen action?",
-//     choices: ['Play', 'Feed', 'Clean'],
-
-// },
-// ])
-// .then((answers) => {
-//     console.log(`Your chosen action is ${answers.getAction}`);
-//     if(`${answers.getAction}` === 'Feed') {
-//         addHungerPoints();
-//     } 
-//     else if(`${answers.getAction}` === 'Clean') {
-//         addCleanPoints();    }   
-//     else if(`${answers.getAction}` === 'Play') {
-//         addHappyPoints();
-//     }   
-// });
-
 const actions = async () => {
     const doing = await inquirer.prompt([
         {
@@ -251,14 +217,17 @@ const actions = async () => {
     ])
     .then((answers) => {
     if(answers.getAction === 'Feed') {
-        addHungerPoints();
+        pet.eats();
     } 
     else if(answers.getAction === 'Clean') {
-        addCleanPoints();    }   
+        pet.cleans();    }   
     else if(answers.getAction === 'Play') {
-        addHappyPoints();
+        pet.plays();
+        // pet.eats();
     } 
     actions()
 })
 }  
 actions() 
+
+
